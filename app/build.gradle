@@ -1,0 +1,124 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace "com.upad"
+
+    compileSdkVersion 33
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        applicationId "com.upad"
+        minSdkVersion 21
+        targetSdk 33
+        versionCode 202
+        versionName "2.0.10"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a","x86","arm64-v8a"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    if(variant.buildType.isDebuggable()){
+                        outputFileName = "qa_${defaultConfig.versionName}.apk"
+                    }else{
+                        outputFileName = "${defaultConfig.versionName}.apk"
+                    }
+                }
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+
+    signingConfigs {
+        debug{
+            keyAlias 'upad'
+            keyPassword '123456'
+            storeFile file('keystore.jks')
+            storePassword '123456'
+        }
+        release{
+            keyAlias 'upad'
+            keyPassword '123456'
+            storeFile file('keystore.jks')
+            storePassword '123456'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+    sourceSets{
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+            assets.srcDirs = ['src/main/assets']
+        }
+    }
+    ndkVersion '21.1.6352462'
+
+/*    packagingOptions {
+        exclude 'classes.dex'
+        exclude '**.**'
+    }*/
+}
+
+
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment:2.3.2'
+    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+//    implementation project(path: ':serialport')
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.4.5' //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.500'
+    implementation 'com.tencent.tinker:tinker-android-lib:1.9.9'
+    implementation 'com.github.bumptech.glide:glide:4.0.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.1.0'
+    implementation 'com.youth.banner:banner:2.1.0'
+    implementation 'com.annimon:stream:1.0.3'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
+//    implementation 'com.github.a237821375:LtEditSpinner:v1.1'
+    implementation 'com.lijiankun24:shadowlayout:1.0.0'
+
+    ///music
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //Rxjava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.5'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'com.facebook.fresco:fresco:1.5.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+//    implementation 'androidx.core:core-ktx:1.7.0'
+    // implementation files('/Users/fangjun/open-source/sherpa-onnx/android/SherpaOnnxAar/sherpa_onnx/build/outputs/aar/sherpa_onnx-release.aar')
+}

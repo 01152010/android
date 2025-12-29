@@ -1,0 +1,49 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="home_item_top">4dp</dimen>
+    <dimen name="item_padding_tb">10dp</dimen>
+    <dimen name="home_pwd_padding_tb">15dp</dimen>
+    <dimen name="home_pwd_padding_lr">15dp</dimen>
+    <dimen name="home_pwd_cycle">8dp</dimen>
+    <dimen name="home_pwd_margin">25dp</dimen>
+    <dimen name="home_pwd_padding">30dp</dimen>
+    <dimen name="item_set_padding_tb">18dp</dimen>
+    <dimen name="item_pwd_height">40dp</dimen>
+    <dimen name="item_margin">20dp</dimen>
+    <dimen name="item_width">130dp</dimen>
+    <dimen name="home_padding_tb">10dp</dimen>
+    <dimen name="home_padding_lr">40dp</dimen>
+
+    <dimen name="home_margin_right">8dp</dimen>
+    <dimen name="home_banner_padding">20dp</dimen>
+    <dimen name="kt_mode_padding_tb">12dp</dimen>
+    <dimen name="padding_tb">20dp</dimen>
+    <dimen name="text_padding_tb">20dp</dimen>
+    <dimen name="cl_mode_padding_tb">20dp</dimen>
+    <dimen name="cl_mode_padding_lr">30dp</dimen>
+
+    <dimen name="icon_margin_right">15dp</dimen>
+    <dimen name="icon_margin_right1">4dp</dimen>
+    <dimen name="cl_padding">60dp</dimen>
+
+    <dimen name="mode_padding_lr">40dp</dimen>
+    <dimen name="mode_margin_tb">35dp</dimen>
+    <dimen name="tab_text_size">20sp</dimen>
+    <dimen name="text_size">26sp</dimen>
+    <dimen name="title_text_size">25sp</dimen>
+    <dimen name="screen_margin_tb">60dp</dimen>
+
+    <dimen name="voice_title">32sp</dimen>
+    <dimen name="voice_show">15sp</dimen>
+    <dimen name="pwd_text_size">27sp</dimen>
+    <dimen name="home_time_size">27sp</dimen>
+    <dimen name="kt_temp_size">90sp</dimen>
+
+    <dimen name="kt_rect_width">8dp</dimen>
+    <dimen name="cl_rect_width">12dp</dimen>
+
+    <dimen name="progress_width">6dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

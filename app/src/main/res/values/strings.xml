@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">xiot-upad</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="no_config_device">未配置该类型设备</string>
+    <string name="waiting">Waiting...</string>
+    <string name="start">拨打电话</string>
+    <string name="hint" />
+</resources>
