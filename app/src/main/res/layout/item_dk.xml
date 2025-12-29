@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/ll_item_dk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white_3"
+        android:padding="@dimen/mode_margin_tb"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sel_dk">
+        </ImageView>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/icon_margin_right"
+            android:text="灯控"
+            android:singleLine="true"
+            android:textColor="@drawable/sel_text"
+            android:textSize="@dimen/text_size">
+        </TextView>
+    </LinearLayout>
+</LinearLayout>

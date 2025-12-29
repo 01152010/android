@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+enum ErrorCode {
+      Success = 0;
+      UnknownError = 1;
+      NoDevice = 2;
+      InvalidParam = 3;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_40">
+<!--    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:realtimeBlurRadius="20dp"
+        android:visibility="gone"
+        app:realtimeOverlayColor="@color/black_22" />-->
+    <TextView
+        android:id="@+id/tv_voice_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/vwv"
+        android:textSize="@dimen/title_text_size"
+        android:textColor="@color/white"
+        android:text="我能帮您什么？">
+    </TextView>
+    <com.upad.view.VolumeWaveView
+        android:id="@+id/vwv"
+        android:layout_width="600dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

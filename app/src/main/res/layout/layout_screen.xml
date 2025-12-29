@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false">
+
+    <com.lijiankun24.shadowlayout.ShadowLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        app:shadowColor="#66cea77d"
+        app:shadowDx="0dp"
+        app:shadowDy="5dp"
+        app:shadowRadius="15dp"
+        app:shadowSide="all">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            app:cardBackgroundColor="@color/themeColor"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="10dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:id="@+id/rlyContext"
+                android:layout_width="260dp"
+                android:layout_height="470dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_show_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_22222d_top"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/item_padding_tb"
+                    android:paddingTop="@dimen/item_padding_tb"
+                    android:text="可视门铃"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size"></TextView>
+                <LinearLayout
+                    android:id="@+id/llyIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:layout_above="@+id/rl_open_ms"
+                    android:layout_below="@+id/tv_show_screen"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/themeColor"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_screen"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"></ImageView>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_open_ms"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/themeColor"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/item_padding_tb">
+
+                    <ImageView
+                        android:id="@+id/imgMsIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/tab_6_sel"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/imgMsIcon"
+                        android:text="开门"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </com.lijiankun24.shadowlayout.ShadowLayout>
+</RelativeLayout>

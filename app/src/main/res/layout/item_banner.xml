@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_home_bottom"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/ll_home_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/home_banner_padding"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/home_margin_right"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="wrap_content"
+                android:background="@color/textColorSel"
+                android:layout_marginEnd="@dimen/home_margin_right">
+            </TextView>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="酒店大堂"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title_text_size">
+            </TextView>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="酒店大堂位于一楼,携住智慧酒店，欢迎您的入住"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</RelativeLayout>

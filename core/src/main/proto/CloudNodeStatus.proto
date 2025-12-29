@@ -1,0 +1,8 @@
+syntax = "proto3";
+import "CloudNodeItem.proto";
+option java_package = "com.core.proto";
+message NodeStatusModel {
+  int32 NodeNo = 1;
+  string NodeStatus = 2;
+  NodeType NodeType = 3;
+}

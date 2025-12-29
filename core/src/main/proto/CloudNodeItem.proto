@@ -1,0 +1,26 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message TransNodePackItem {
+  int32 TotalPackageCount = 1;
+  int32 PackageNum = 2;
+  repeated NodeItem NodeList = 3;
+}
+
+message NodeItem {
+  int32 NodeNo = 1;
+  NodeType NodeType = 2;
+  string NodeName = 3;
+  string NodeStatus = 4;
+}
+
+enum NodeType {
+      Scene = 0;
+      Curtain = 1;
+      Lock = 2;
+      AirCondition = 3;
+      TV = 4;
+      Light = 5;
+      Power = 6;
+      Service = 7;
+      Infrared = 8;
+}

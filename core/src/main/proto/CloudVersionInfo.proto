@@ -1,0 +1,5 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message VersionInfo {
+  string VersionDes = 1;
+}

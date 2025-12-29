@@ -1,0 +1,6 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message NodeControlRequest {
+  int32 NodeNo = 1;
+  string Action = 2;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message UpdateAppResponse {
+  UpdateStatus Status = 1;
+}
+
+enum UpdateStatus {
+  Got = 0;
+  Downloading = 1;
+  Downloaded = 2;
+  InstallSuccess = 3;
+  InstallFailed = 4;
+  DownloadFailed = 5;
+}

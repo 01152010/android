@@ -1,0 +1,7 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message UpdateAppRequest {
+  string AppType = 1;
+  string VersionName = 2;
+  string Url = 3;
+}

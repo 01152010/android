@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/home_padding_tb"
+    android:layout_marginBottom="@dimen/home_padding_tb"
+    android:paddingTop="@dimen/padding_tb"
+    android:paddingBottom="@dimen/padding_tb"
+    android:paddingStart="@dimen/home_padding_lr"
+    android:paddingEnd="@dimen/home_padding_lr"
+    android:background="@color/cardColor">
+<!--    <include layout="@layout/item_dk"></include>-->
+    <GridView
+        android:id="@+id/gv_dk"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="auto_fit"
+        android:columnWidth="@dimen/item_width"
+        android:horizontalSpacing="@dimen/item_margin"
+        android:verticalSpacing="@dimen/item_margin"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+    </GridView>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/home_padding_tb"
+    android:layout_marginBottom="@dimen/home_padding_tb"
+    android:paddingTop="@dimen/padding_tb"
+    android:paddingBottom="@dimen/padding_tb"
+    android:paddingStart="@dimen/home_padding_lr"
+    android:paddingEnd="@dimen/home_padding_lr"
+    android:background="@color/cardColor">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.viewpager.widget.ViewPager>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/tv_oval1"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/bg_oval">
+        </TextView>
+        <TextView
+            android:id="@+id/tv_oval2"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@drawable/bg_oval">
+        </TextView>
+    </LinearLayout>
+</RelativeLayout>

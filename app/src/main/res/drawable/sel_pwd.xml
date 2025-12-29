@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="0.67dp"
+                        android:color="@color/white" />
+                </shape>
+            </item>
+            <item
+                android:bottom="@dimen/home_pwd_cycle"
+                android:left="@dimen/home_pwd_cycle"
+                android:right="@dimen/home_pwd_cycle"
+                android:top="@dimen/home_pwd_cycle">
+                <shape
+                    android:shape="oval"
+                    android:useLevel="false">
+                    <solid android:color="@color/white" />
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/white" />
+                    <size
+                        android:width="20dp"
+                        android:height="20dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_selected="false">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/white" />
+                    <size
+                        android:width="20dp"
+                        android:height="20dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

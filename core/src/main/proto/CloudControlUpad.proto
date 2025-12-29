@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message UPadControlRequest {
+  UPadAction Action = 1;
+}
+
+enum UPadAction {
+      Sleep = 0;//休眠
+      Reboot = 1;//重启
+      Reset = 2;//重置
+      OpenVoice = 3;//开启语音识别
+      CloseVoice = 4;//关闭语音识别
+      WakeUp = 5;//唤醒
+}

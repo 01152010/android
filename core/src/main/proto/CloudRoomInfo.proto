@@ -1,0 +1,6 @@
+syntax = "proto3";
+option java_package = "com.core.proto";
+message RoomInfoResponse {
+  string HotelId = 1;
+  string RoomNo = 2;
+}
