@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.IndexActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/my_ip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_700"
+            android:textSize="@dimen/text_size">
+        </TextView>
+        <TextView
+            android:id="@+id/my_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1015"
+            android:textColor="#FF0000"
+            android:textSize="26sp"
+            android:textStyle="bold|italic"
+            android:gravity="center"
+            android:background="#E0E0E0">
+        </TextView>
+        <Button
+            android:id="@+id/dial_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:text="拨打电话" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
