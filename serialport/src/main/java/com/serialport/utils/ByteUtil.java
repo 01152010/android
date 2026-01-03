@@ -88,7 +88,7 @@ public class ByteUtil {
                 continue;
             }
             if(0 == i%2){
-                result += " "+hexStr.substring(i,i+1);
+                result += " "+hexStr.charAt(i);
             }else{
                 result += hexStr.substring(i,i+1);
             }

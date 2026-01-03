@@ -3,7 +3,7 @@ package ca.l5.expandingdev.jsgf;
 import java.util.*;
 
 public class Sequence implements Expansion, Collection {
-    private List<Expansion> exp;
+    private final List<Expansion> exp;
 
     public Sequence(Expansion... e) {
         exp = Arrays.asList(e);
@@ -68,7 +68,7 @@ public class Sequence implements Expansion, Collection {
     @Override
     public boolean contains(Object o) {
         if (o instanceof Expansion) {
-            return exp.contains((Expansion) o);
+            return exp.contains(o);
         }
         return false;
     }

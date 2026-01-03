@@ -1,7 +1,7 @@
 package ca.l5.expandingdev.jsgf;
 
 public class Token implements Expansion {
-    private String text;
+    private final String text;
 
     public Token() {
         text = "";

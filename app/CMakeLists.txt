@@ -16,12 +16,12 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 add_definitions(-DFIXED_POINT -DUSE_KISS_FFT -DHAVE_CONFIG_H)
 
 file(GLOB_RECURSE WEBRTC_SRC
-    "${CMAKE_SOURCE_DIR}/src/main/cpp/webrtc/*.c"
-    "${CMAKE_SOURCE_DIR}/src/main/cpp/webrtc/*.cpp"
-    "${CMAKE_SOURCE_DIR}/src/main/cpp/webrtc/*.cc"
-    "${CMAKE_SOURCE_DIR}/src/main/cpp/webrtc/*.cxx"
-    "${CMAKE_SOURCE_DIR}/src/main/cpp/webrtc/*.m"
-    "${CMAKE_SOURCE_DIR}/src/main/cpp/webrtc/*.mm"
+    "${CMAKE_SOURCE_DIR}/src/main/cpp/*.c"
+    "${CMAKE_SOURCE_DIR}/src/main/cpp/*.cpp"
+    "${CMAKE_SOURCE_DIR}/src/main/cpp/*.cc"
+    "${CMAKE_SOURCE_DIR}/src/main/cpp/*.cxx"
+    "${CMAKE_SOURCE_DIR}/src/main/cpp/*.m"
+    "${CMAKE_SOURCE_DIR}/src/main/cpp/*.mm"
 )
 
 add_library( # Sets the name of the library.

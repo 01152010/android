@@ -14,10 +14,10 @@ public class TiaoZiUtil {
 
 
     public TiaoZiUtil(TextView tv, String s, long time) {
-        this.tv = tv;//textview
-        this.s = s;//字符串
-        this.time = time;//间隔时间
-        this.length = s.length();
+        TiaoZiUtil.tv = tv;//textview
+        TiaoZiUtil.s = s;//字符串
+        TiaoZiUtil.time = time;//间隔时间
+        length = s.length();
         startTv(n);//开启线程
     }
 

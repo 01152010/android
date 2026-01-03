@@ -71,7 +71,6 @@ public class VoiceView extends RelativeLayout {
         LogUtil.Log("VoiceView-showResult");
         if(!show){
             setVisibility(GONE);
-            return;
         }
     }
 }

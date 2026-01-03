@@ -15,49 +15,10 @@ import androidx.core.app.ActivityCompat;
 import com.k2fsa.sherpa.ncnn.SherpaNcnn;
 import com.upad.R;
 
-import org.pjsip.pjsua2.Account;
-import org.pjsip.pjsua2.AccountConfig;
-import org.pjsip.pjsua2.Buddy;
-import org.pjsip.pjsua2.BuddyConfig;
-import org.pjsip.pjsua2.BuddyInfo;
-import org.pjsip.pjsua2.Call;
-import org.pjsip.pjsua2.CallInfo;
-import org.pjsip.pjsua2.ContainerNode;
-import org.pjsip.pjsua2.Endpoint;
-import org.pjsip.pjsua2.EpConfig;
-import org.pjsip.pjsua2.IpChangeParam;
-import org.pjsip.pjsua2.JsonDocument;
-import org.pjsip.pjsua2.LogConfig;
-import org.pjsip.pjsua2.LogEntry;
-import org.pjsip.pjsua2.LogWriter;
-import org.pjsip.pjsua2.OnCallMediaEventParam;
-import org.pjsip.pjsua2.OnCallMediaStateParam;
-import org.pjsip.pjsua2.OnCallStateParam;
-import org.pjsip.pjsua2.OnIncomingCallParam;
-import org.pjsip.pjsua2.OnInstantMessageParam;
-import org.pjsip.pjsua2.OnRegStateParam;
-import org.pjsip.pjsua2.OnTimerParam;
-import org.pjsip.pjsua2.TransportConfig;
-import org.pjsip.pjsua2.UaConfig;
-import org.pjsip.pjsua2.pj_log_decoration;
-import org.pjsip.pjsua2.pjmedia_srtp_use;
-import org.pjsip.pjsua2.pjmedia_vid_dev_std_index;
-import org.pjsip.pjsua2.pjsip_evsub_state;
-import org.pjsip.pjsua2.pjsip_inv_state;
-import org.pjsip.pjsua2.pjsip_role_e;
-import org.pjsip.pjsua2.pjsip_transport_type_e;
-import org.pjsip.pjsua2.pjsua2;
-import org.pjsip.pjsua2.pjsua_buddy_status;
-
-import java.io.File;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Objects;
-
-import org.pjsip.pjsua2.*;
 
 
 public class IndexActivity extends AppCompatActivity {
@@ -85,8 +46,8 @@ public class IndexActivity extends AppCompatActivity {
     // since the AudioRecord.read(float[]) needs API level >= 23
     // but we are targeting API level >= 21
     private final int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
-    private int idx = 0;
-    private String lastText = "";
+    private final int idx = 0;
+    private final String lastText = "";
 
     private volatile boolean isCalling = false;
 
@@ -136,19 +97,22 @@ public class IndexActivity extends AppCompatActivity {
         ip = findViewById(R.id.my_ip);
         ip.setText(getEthernetIpAddress());
 
-        textView = findViewById(R.id.my_call);
+        textView = findViewById(R.id.my_log);
         Button dialButton = findViewById(R.id.dial_button);
         dialButton.setOnClickListener(v -> {
             if(!isCalling){
                 try {
                     isCalling = true;
                     dialButton.setText("挂断电话");
+                    int r = com.webrtc.Utils.add(1,3);
+                    textView.setText(String.valueOf(r));
                 } catch (Exception e) {
                     Log.e("call",e.toString());
                 }
             } else{
                 try {
                     isCalling = false;
+                    textView.setText("isCalling false");
                     dialButton.setText("拨打电话");
                 } catch (Exception e) {
                     Log.e("call",e.toString());

@@ -176,7 +176,7 @@ public class FileUtil {
      *  @param  newPath  String  复制后路径  如：xx:/bb/cc
      */
     public static void copyFilesFromAssets(Context context,String oldPath,String newPath) throws IOException {
-        String fileNames[] = context.getAssets().list(oldPath);//获取assets目录下的所有文件及目录名
+        String[] fileNames = context.getAssets().list(oldPath);//获取assets目录下的所有文件及目录名
         if (fileNames.length > 0) {//如果是目录
             File file = new File(newPath);
             file.mkdirs();//如果文件夹不存在，则递归

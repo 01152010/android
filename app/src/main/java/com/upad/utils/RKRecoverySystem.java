@@ -19,9 +19,9 @@ import java.io.IOException;
 
 public class RKRecoverySystem{
 	private static final String TAG = "RKRecoverySystem";
-	private static File RECOVERY_DIR = new File("/cache/recovery");
-	private static File COMMAND_FILE = new File(RECOVERY_DIR, "command");
-	private static File UPDATE_FLAG_FILE = new File(RECOVERY_DIR, "last_flag");
+	private static final File RECOVERY_DIR = new File("/cache/recovery");
+	private static final File COMMAND_FILE = new File(RECOVERY_DIR, "command");
+	private static final File UPDATE_FLAG_FILE = new File(RECOVERY_DIR, "last_flag");
 
 	public static void installPackage(Context context, File packageFile)throws IOException{
         String filename = packageFile.getPath();
@@ -53,8 +53,8 @@ public class RKRecoverySystem{
 		if(UPDATE_FLAG_FILE.exists()) {
 			Log.d(TAG, "UPDATE_FLAG_FILE is exists");
 			char[] buf = new char[128];
-			int readCount = 0;;
-			try {
+			int readCount = 0;
+            try {
 				FileReader reader = new FileReader(UPDATE_FLAG_FILE);
 				readCount = reader.read(buf, 0, buf.length);
 				Log.d(TAG, "readCount = " + readCount + " buf.length = " + buf.length);

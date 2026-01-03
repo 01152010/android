@@ -39,7 +39,7 @@ public class MessageBean {
         this.url = url;
     }
 
-    private ArrayList<MessageBean> mWidgetListItem = new ArrayList<>();
+    private final ArrayList<MessageBean> mWidgetListItem = new ArrayList<>();
     private int mCurrentPage = 1;
     private boolean mFirstLayout = true;
 

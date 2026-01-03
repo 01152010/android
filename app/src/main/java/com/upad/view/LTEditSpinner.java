@@ -28,8 +28,8 @@ import java.util.List;
 public class LTEditSpinner<T> extends RelativeLayout
 {
 
-    public static interface OnESItemClickListener<Y>{
-        public void onItemClick(Y item);
+    public interface OnESItemClickListener<Y>{
+        void onItemClick(Y item);
     }
 
     EditText ltes_editText;
@@ -37,8 +37,8 @@ public class LTEditSpinner<T> extends RelativeLayout
     ListView ltes_list;
     SpinnerAdapt<T> mAdapter;
 
-    private List<T> mListAll_data = new ArrayList<T>();;
-    private List<T> mList_data = new ArrayList<T>();;
+    private List<T> mListAll_data = new ArrayList<T>();
+    private List<T> mList_data = new ArrayList<T>();
 
     Context mContext;
 
@@ -105,7 +105,7 @@ public class LTEditSpinner<T> extends RelativeLayout
         mContext = context;
 
         View contentView = LayoutInflater.from(context).inflate(R.layout.layout_edit_spinner_ltes, this, true);
-        ltes_editText= (EditText) findViewById(R.id.ltes_editText);
+        ltes_editText= findViewById(R.id.ltes_editText);
 
         ltes_editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -190,7 +190,7 @@ public class LTEditSpinner<T> extends RelativeLayout
         View layoutOfList = LayoutInflater.from(context).inflate(R.layout.layout_spinner_list_ltes, null);
 
         //初始化列表数据
-        ltes_list = (ListView)layoutOfList.findViewById(R.id.ltes_list);
+        ltes_list = layoutOfList.findViewById(R.id.ltes_list);
         mAdapter = new SpinnerAdapt<T>( mList_data, context);
         ltes_list.setAdapter(mAdapter);
         //点击某一条

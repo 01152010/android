@@ -27,7 +27,7 @@ public enum VoiceLineCmd {
     MUSICCTRL("media.ctrl"),//QQ音乐控制
     MUSICNEXT("DUI.MediaController.Next");//QQ音乐控制
 
-    private String cmd;
+    private final String cmd;
     VoiceLineCmd(String cmd){
         this.cmd = cmd;
     }

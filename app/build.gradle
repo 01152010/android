@@ -5,12 +5,12 @@ plugins {
 android {
     namespace "com.upad"
 
-    compileSdkVersion 33
+    compileSdkVersion 36
     buildToolsVersion "30.0.1"
 
     defaultConfig {
         applicationId "com.upad"
-        minSdkVersion 21
+        minSdkVersion 28
         targetSdk 33
         versionCode 202
         versionName "2.0.10"
@@ -41,11 +41,11 @@ android {
         }
     }
 
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
 
     signingConfigs {
         debug{
@@ -94,7 +94,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.2'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-//    implementation project(path: ':serialport')
+    implementation project(path: ':webrtc')
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

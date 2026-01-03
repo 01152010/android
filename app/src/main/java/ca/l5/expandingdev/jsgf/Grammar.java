@@ -7,8 +7,8 @@ import java.util.List;
 public class Grammar {
     public static final String specialCharacterRegex = "[;=<>*+\\[\\]()|{} ]";
     public String name;
-    private List<Rule> rules;
-    private List<Import> imports;
+    private final List<Rule> rules;
+    private final List<Import> imports;
     private GrammarHeader header;
 
     public Grammar() {
@@ -555,10 +555,10 @@ public class Grammar {
                             tempExp.add(new UnparsedSection(newUnprocessedText.trim()));
                             iterationNeeded = true;
                         } else {
-                            throw new UnsupportedOperationException("Found start of rule reference, but did not find > immediately afterwards! found: " + e.toString());
+                            throw new UnsupportedOperationException("Found start of rule reference, but did not find > immediately afterwards! found: " + e);
                         }
                     } else {
-                        throw new UnsupportedOperationException("Found start of rule reference, but did not find > immediately afterwards! found: " + e.toString());
+                        throw new UnsupportedOperationException("Found start of rule reference, but did not find > immediately afterwards! found: " + e);
                     }
                 } else if (tokenSearch) {
                     if (e instanceof Token) {
@@ -566,7 +566,7 @@ public class Grammar {
                         tokenSearch = false;
                         selectedToken = (Token) e;
                     } else {
-                        throw new UnsupportedOperationException("Found < character denoting rule reference, but did not find rule name immediately afterwards! found: " + e.toString());
+                        throw new UnsupportedOperationException("Found < character denoting rule reference, but did not find rule name immediately afterwards! found: " + e);
                     }
                 } else {
                     tempExp.add(e);
@@ -646,7 +646,7 @@ public class Grammar {
                         quoteType = '\"';
                         currentToken += a;
                         position++;
-                    } else if (a.equals("\'")) {
+                    } else if (a.equals("'")) {
                         quotedMode = true;
                         quoteType = '\'';
                         currentToken += a;
@@ -712,7 +712,7 @@ public class Grammar {
     public static Grammar parseGrammarFromString(String s) {
         Grammar grammar = new Grammar();
         String noComments = s.replaceAll("(\\#+.*[\\n|\\r|\\v])|([//]+.*[\\n|\\r|\\v])", ""); // Remove all commented out lines
-        String[] statements = noComments.split("(?<!\"\');(?!\"\')"); // Split into statements with each semicolon, but ignore semicolons within quotes!
+        String[] statements = noComments.split("(?<!\"');(?!\"')"); // Split into statements with each semicolon, but ignore semicolons within quotes!
 
         try {
             for (String statement : statements) {

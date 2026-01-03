@@ -43,8 +43,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CommonUtil {
-    private static File RECOVERY_DIR = new File("/cache/recovery");
-    private static File UPDATE_FLAG_FILE = new File(RECOVERY_DIR, "last_flag");
+    private static final File RECOVERY_DIR = new File("/cache/recovery");
+    private static final File UPDATE_FLAG_FILE = new File(RECOVERY_DIR, "last_flag");
     private static final String COMMAND_FLAG_SUCCESS = "success";
     private static final String COMMAND_FLAG_UPDATING = "updating";
 
@@ -94,10 +94,7 @@ public class CommonUtil {
         SimpleDateFormat formatter = new SimpleDateFormat("HHmm");
         Date time = new Date(System.currentTimeMillis());// 获取当前时间
         String strTime = formatter.format(time);
-        if (strTime.equalsIgnoreCase(pwd)) {
-            return true;
-        }
-        return false;
+        return strTime.equalsIgnoreCase(pwd);
     }
 
     public static PackageInfo getPackageInfo(Context context) {
@@ -212,7 +209,6 @@ public class CommonUtil {
             LogUtil.Log("UPDATE_FLAG_FILE is exists");
             char[] buf = new char[128];
             int readCount = 0;
-            ;
             try {
                 FileReader reader = new FileReader(UPDATE_FLAG_FILE);
                 readCount = reader.read(buf, 0, buf.length);
@@ -280,7 +276,7 @@ public class CommonUtil {
 
 
     public static String getDeviceId(Context context) {
-        TelephonyManager telephonyMgr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        TelephonyManager telephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String imei = null;
         try {
             imei = telephonyMgr.getDeviceId();

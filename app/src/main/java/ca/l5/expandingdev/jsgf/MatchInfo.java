@@ -1,8 +1,8 @@
 package ca.l5.expandingdev.jsgf;
 
 public class MatchInfo {
-    private Expansion expansion;
-    private String matchingSection;
+    private final Expansion expansion;
+    private final String matchingSection;
     public boolean actualMatch;
 
     public Expansion getMatchedExpansion() {

@@ -20,8 +20,8 @@ public class SpinnerAdapt<T> extends BaseAdapter
 
 
     private List<T> mList;
-    private Context mContext;
-    private LayoutInflater mInflater;
+    private final Context mContext;
+    private final LayoutInflater mInflater;
 
 
     public void setmList(List<T> mList) {
@@ -56,7 +56,7 @@ public class SpinnerAdapt<T> extends BaseAdapter
         if (view == null) {
             viewHolder = new ViewHolder();
             view = mInflater.inflate(R.layout.list_item_ltes, null);
-            viewHolder.name = (TextView) view.findViewById(R.id.ltes_textview_name);
+            viewHolder.name = view.findViewById(R.id.ltes_textview_name);
 
             view.setTag(viewHolder);
         } else {

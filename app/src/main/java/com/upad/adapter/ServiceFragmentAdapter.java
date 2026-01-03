@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class ServiceFragmentAdapter extends FragmentPagerAdapter {
-    private List<Fragment> mFragmentList = new ArrayList<>();
+    private final List<Fragment> mFragmentList = new ArrayList<>();
 
     public ServiceFragmentAdapter(@NonNull FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);

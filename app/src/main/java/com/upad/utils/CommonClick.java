@@ -8,11 +8,11 @@ import android.view.View;
 import com.upad.R;
 
 public class CommonClick implements View.OnClickListener {
-    private Context mContext;
-    private SoundPool mSoundPool;
+    private final Context mContext;
+    private final SoundPool mSoundPool;
 
-    private float mVolume;
-    private OnItemClickListener mOnItemClickListener;
+    private final float mVolume;
+    private final OnItemClickListener mOnItemClickListener;
 
 
     public CommonClick(Context context,OnItemClickListener onItemClickListener){
@@ -43,6 +43,6 @@ public class CommonClick implements View.OnClickListener {
     }
 
     public interface OnItemClickListener{
-        public void OnitemClick(View view);
+        void OnitemClick(View view);
     }
 }

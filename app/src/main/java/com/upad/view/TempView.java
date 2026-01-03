@@ -18,14 +18,14 @@ import com.upad.utils.LogUtil;
 
 public class TempView extends View {
     private int mRectWidth = 10;
-    private int mStartTemp = 19;
-    private int mEndTemp = 30;
+    private final int mStartTemp = 19;
+    private final int mEndTemp = 30;
     private int mCurrentIndex = 14;
-    private int mNum = 23;
+    private final int mNum = 23;
     private int mWidth;
     private int mHeight;
-    private Paint mPaint;
-    private Context mContext;
+    private final Paint mPaint;
+    private final Context mContext;
     private Canvas mCanvas;
     private OnTempChangeListener mOnTempChangeListener;
 

@@ -35,10 +35,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class SerialControl {
     private final static long TIMEOUT = 10000;
     private static final int BUFSIZ = 512;
-    private LinkedBlockingQueue<Command> mBasket = new LinkedBlockingQueue<>(10);
+    private final LinkedBlockingQueue<Command> mBasket = new LinkedBlockingQueue<>(10);
     private final ByteBuffer mReadBuffer = ByteBuffer.allocate(BUFSIZ);
     private final ByteBuffer mRealReadBuffer = ByteBuffer.allocate(BUFSIZ);
-    private Context mContext;
+    private final Context mContext;
     private SerialPort mSerialPort;
     private OutputStream mOutputStream;
     private InputStream mInputStream;
@@ -48,16 +48,16 @@ public class SerialControl {
     private int mDataBits = 8;
     private int mStopBits = 1;
     private int mParity = 0;
-    private int mFlowCon = 0;
-    private int mFlags = 0;
+    private final int mFlowCon = 0;
+    private final int mFlags = 0;
 
     private ReadThread mReadThread;
     private WriteThread mWriteThread;
     private boolean mIsOpen = false;
-    private List<Command> mCommandList = new ArrayList<>();
+    private final List<Command> mCommandList = new ArrayList<>();
     private Command mCurrentCommand;
-    private Handler mHandler = new Handler();
-    private List<CloudNodeItem.NodeItem> mNodeItemList = new ArrayList<>();
+    private final Handler mHandler = new Handler();
+    private final List<CloudNodeItem.NodeItem> mNodeItemList = new ArrayList<>();
     private int mAddress = 1;
     private static SerialControl mSerialControl;
     public SerialControl(Context context){
@@ -125,10 +125,7 @@ public class SerialControl {
     }
 
     public boolean isSending(CmdType cmdType){
-        if(null != mCurrentCommand && cmdType == mCurrentCommand.getCmdType()){
-            return true;
-        }
-        return false;
+        return null != mCurrentCommand && cmdType == mCurrentCommand.getCmdType();
     }
 
 
@@ -443,7 +440,7 @@ public class SerialControl {
         }
     }
 
-    private Runnable mTimeoutRunnable = new Runnable() {
+    private final Runnable mTimeoutRunnable = new Runnable() {
         @Override
         public void run() {
             LogUtil.Log("mTimeoutRunnable");

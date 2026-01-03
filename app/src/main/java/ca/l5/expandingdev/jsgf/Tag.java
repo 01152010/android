@@ -7,7 +7,7 @@ import java.util.List;
 public class Tag implements Expansion {
 
     private Expansion childExpansion;
-    private List<String> contents;
+    private final List<String> contents;
 
     public Tag(Expansion e, String t) {
         childExpansion = e;

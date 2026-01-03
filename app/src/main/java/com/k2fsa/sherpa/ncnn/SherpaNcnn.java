@@ -4,7 +4,7 @@ import android.content.res.AssetManager;
 
 public class SherpaNcnn {
     private com.k2fsa.sherpa.ncnn.RecognizerConfig config;
-    private long ptr;
+    private final long ptr;
 
     static {
         System.loadLibrary("sherpa-ncnn-jni");

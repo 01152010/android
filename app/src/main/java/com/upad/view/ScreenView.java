@@ -22,8 +22,8 @@ public class ScreenView extends RelativeLayout {
     private LinearLayout rlyContext;
     private ImageView mIvScreen;
     private OpenMSListener mOpenMSListener;
-    private Context mContext;
-    private Handler mHandler = new Handler();
+    private final Context mContext;
+    private final Handler mHandler = new Handler();
 
     public ScreenView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,10 +63,10 @@ public class ScreenView extends RelativeLayout {
     }
 
     public interface OpenMSListener{
-        public void openMS();
+        void openMS();
     }
 
-    private Runnable mRunnable = new Runnable() {
+    private final Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
             setVisibility(GONE);

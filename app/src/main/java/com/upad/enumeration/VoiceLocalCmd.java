@@ -39,7 +39,7 @@ public enum VoiceLocalCmd {
     OpenMode("DUI.System.Sounds.OpenMode"),//设置音量
     Exit("DUI.System.Exit");//退出
 
-    private String cmd;
+    private final String cmd;
     VoiceLocalCmd(String cmd){
         this.cmd = cmd;
     }

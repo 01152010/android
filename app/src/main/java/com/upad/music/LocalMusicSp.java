@@ -11,12 +11,12 @@ import com.upad.APP;
  * @author nemo
  */
 public class LocalMusicSp {
-    private SharedPreferences preferences;
-    private SharedPreferences preferencesMusic;
+    private final SharedPreferences preferences;
+    private final SharedPreferences preferencesMusic;
 
     private static LocalMusicSp sInstance;
 
-    private Gson mGson;
+    private final Gson mGson;
 
 
     private LocalMusicSp() {

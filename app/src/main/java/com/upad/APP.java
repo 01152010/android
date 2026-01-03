@@ -12,7 +12,7 @@ import java.util.List;
 
 public class APP extends Application {
     private static Context mContext;
-    private List<Activity> mActivities = new ArrayList<>();
+    private final List<Activity> mActivities = new ArrayList<>();
     @Override
     public void onCreate() {
         super.onCreate();

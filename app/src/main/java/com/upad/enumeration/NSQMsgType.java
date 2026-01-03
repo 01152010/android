@@ -6,7 +6,7 @@ public enum NSQMsgType {
     Upad_Core("Upad_Core"),
     Upad_OS("Upad_OS"),
     Welcome("welcome");
-    private String type;
+    private final String type;
     NSQMsgType(String type){
         this.type = type;
     }

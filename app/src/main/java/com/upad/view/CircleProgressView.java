@@ -25,7 +25,7 @@ public class CircleProgressView extends View {
     private Paint mBgPaint;//背景弧线paint
     private Paint mProgressPaint;//进度Paint
     private float mProgressWidth;//进度条宽度
-    private int mProgressColor = Color.parseColor("#e1bca6");//进度条颜色
+    private final int mProgressColor = Color.parseColor("#e1bca6");//进度条颜色
     private int locationStart;//起始位置
     private float startAngle;//开始角度
     private ValueAnimator mAnimator;

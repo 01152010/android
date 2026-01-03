@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AlternativeSet implements Expansion {
-    private List<Expansion> expansions;
+    private final List<Expansion> expansions;
     private float[] weights = null;
 
     public AlternativeSet(Expansion[] e, float[] weightArray) {

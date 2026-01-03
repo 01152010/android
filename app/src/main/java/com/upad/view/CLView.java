@@ -22,12 +22,12 @@ public class CLView extends View {
     private int mRectWidth = 15;
     private int mWidth;
     private int mHeight;
-    private Paint mPaint;
-    private Context mContext;
+    private final Paint mPaint;
+    private final Context mContext;
     private Canvas mCanvas;
-    private int mNum = 20;
+    private final int mNum = 20;
     private int mCurrentIndex = 9;
-    private Handler mHandler;
+    private final Handler mHandler;
     private long mCurrentSpeed = SPEED;
 
 
@@ -115,7 +115,7 @@ public class CLView extends View {
         }
     }
 
-    private Runnable mONRunnable = new Runnable() {
+    private final Runnable mONRunnable = new Runnable() {
         @Override
         public void run() {
             if(2 < mCurrentIndex){
@@ -136,7 +136,7 @@ public class CLView extends View {
         }
     };
 
-    private Runnable mOFFRunnable = new Runnable() {
+    private final Runnable mOFFRunnable = new Runnable() {
         @Override
         public void run() {
             if(mCurrentIndex < ALLOFFNUM){

@@ -197,11 +197,11 @@ public class TopDrawerLayout extends ViewGroup implements Openable {
             new ChildAccessibilityDelegate();
     private float mDrawerElevation;
 
-    private int mMinDrawerMargin;
+    private final int mMinDrawerMargin;
 
     private int mScrimColor = DEFAULT_SCRIM_COLOR;
     private float mScrimOpacity;
-    private Paint mScrimPaint = new Paint();
+    private final Paint mScrimPaint = new Paint();
 
 
     private final ViewDragHelper mTopDragger;
@@ -255,7 +255,7 @@ public class TopDrawerLayout extends ViewGroup implements Openable {
     private Rect mChildHitRect;
     private Matrix mChildInvertedMatrix;
 
-    private static boolean sEdgeSizeUsingSystemGestureInsets = Build.VERSION.SDK_INT >= 29;
+    private static final boolean sEdgeSizeUsingSystemGestureInsets = Build.VERSION.SDK_INT >= 29;
 
     private final AccessibilityViewCommand mActionDismiss =
             new AccessibilityViewCommand() {
@@ -1245,7 +1245,7 @@ public class TopDrawerLayout extends ViewGroup implements Openable {
      * Change the layout direction of the given drawable.
      */
     private void mirror(Drawable drawable, int layoutDirection) {
-        if (drawable != null && DrawableCompat.isAutoMirrored(drawable)) {
+        if (DrawableCompat.isAutoMirrored(drawable)) {
             DrawableCompat.setLayoutDirection(drawable, layoutDirection);
         }
     }
@@ -1503,11 +1503,8 @@ public class TopDrawerLayout extends ViewGroup implements Openable {
 //            // This child is a right-edge drawer
 //            return true;
 //        }
-        if ((absGravity & Gravity.TOP) != 0) {
-            // This child is a left-edge drawer
-            return true;
-        }
-        return false;
+        // This child is a left-edge drawer
+        return (absGravity & Gravity.TOP) != 0;
     }
 
     @SuppressWarnings("ShortCircuitBoolean")

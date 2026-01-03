@@ -20,8 +20,8 @@ public class MSView extends View {
     private int mPercent;
     private Paint mBgArcPaint;
     private Paint mArcPaint;
-    private Context mContext;
-    private int mProgressWidth;
+    private final Context mContext;
+    private final int mProgressWidth;
     private float mSweepAngle;
     private RectF mRectF;
     private ValueAnimator mAnimator;

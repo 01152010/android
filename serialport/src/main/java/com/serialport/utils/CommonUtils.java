@@ -35,7 +35,6 @@ public class CommonUtils {
         } catch(Exception e) {
             e.printStackTrace();
             LogUtil.Log("切换收发失败:"+e.getMessage());
-            return;
         }finally {
             LogUtil.Log("CommonUtils-Write2File-success");
         }

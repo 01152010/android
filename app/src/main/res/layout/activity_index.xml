@@ -18,16 +18,18 @@
             android:textColor="@color/purple_700"
             android:textSize="@dimen/text_size">
         </TextView>
+
         <TextView
-            android:id="@+id/my_call"
+            android:id="@+id/my_log"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1015"
+            android:layout_height="605dp"
+            android:background="#E0E0E0"
+            android:gravity="center"
+            android:scrollbars="vertical"
             android:textColor="#FF0000"
             android:textSize="26sp"
-            android:textStyle="bold|italic"
-            android:gravity="center"
-            android:background="#E0E0E0">
+            android:textStyle="bold|italic">
+
         </TextView>
         <Button
             android:id="@+id/dial_button"

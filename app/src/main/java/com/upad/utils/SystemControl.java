@@ -6,9 +6,9 @@ import android.os.PowerManager;
 
 public class SystemControl {
     private static SystemControl mSystemControl;
-    private PowerManager.WakeLock mWakeLock;
-    private DevicePolicyManager mPolicyManager;
-    private PowerManager mPowerManager;
+    private final PowerManager.WakeLock mWakeLock;
+    private final DevicePolicyManager mPolicyManager;
+    private final PowerManager mPowerManager;
 
     public SystemControl(Context context) {
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
