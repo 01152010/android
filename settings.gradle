@@ -2,3 +2,4 @@ include ':serialport'
 include ':app'
 rootProject.name = "xiot-upad"
 include ':webrtc'
+include ':kws'

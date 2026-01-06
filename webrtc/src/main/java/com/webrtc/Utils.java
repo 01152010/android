@@ -11,7 +11,5 @@ public class Utils {
      * A native method that is implemented by the 'webrtc' native library,
      * which is packaged with this application.
      */
-    public native String stringFromJNI();
-
     public static native int add(int i,int j);
 }

@@ -324,6 +324,12 @@ Java_com_webrtc_Utils_addNumbers(JNIEnv *env, jclass clazz, jint num1, jint num2
     return add(num1,num2);
 }
 
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_webrtc_Utils_add(JNIEnv *env, jobject thiz, jint i, jint j) {
+    return  add(i,j);
+}
+
 #ifdef __cplusplus
 }
 #endif
