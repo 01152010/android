@@ -63,7 +63,7 @@
         <!-- <service -->
         <!-- android:name=".service.UpdateService" /> -->
         <activity
-            android:name=".activity.IndexActivity"
+            android:name=".IndexActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

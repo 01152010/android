@@ -1,43 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.IndexActivity">
+    tools:context=".IndexActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <SeekBar
+            android:id="@+id/seek_bar_sample_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="16000"
+            android:layout_marginTop="20dp"/>
+
         <TextView
-            android:id="@+id/my_ip"
+            android:id="@+id/text_view_seek_bar_sample_rate_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/seek_bar_frame_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="160"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/text_view_seek_bar_frame_size_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/seek_bar_aggressive_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="4"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/text_view_seek_bar_aggressive_mode_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <SeekBar
+            android:id="@+id/seek_bar_echo_length"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="500"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/text_view_seek_bar_echo_length_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/playBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="play"
+                android:layout_centerInParent="true"/>
+
+            <Button
+                android:id="@+id/stopBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="stop"
+                android:visibility="gone"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <Switch
+            android:id="@+id/switch_aecm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/purple_700"
-            android:textSize="@dimen/text_size">
-        </TextView>
-
-        <TextView
-            android:id="@+id/my_log"
-            android:layout_width="match_parent"
-            android:layout_height="605dp"
-            android:background="#E0E0E0"
-            android:gravity="center"
-            android:scrollbars="vertical"
-            android:textColor="#FF0000"
-            android:textSize="26sp"
-            android:textStyle="bold|italic">
-
-        </TextView>
-        <Button
-            android:id="@+id/dial_button"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
-            android:text="拨打电话" />
+            android:text="AECM"
+            android:layout_marginTop="20dp"
+            android:switchPadding="5dp"/>
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

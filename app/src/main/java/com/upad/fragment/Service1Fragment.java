@@ -9,9 +9,8 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.upad.activity.BaseFragment;
+import com.upad.BaseFragment;
 import com.upad.R;
-import com.upad.utils.Constants;
 
 public class Service1Fragment extends BaseFragment {
     private LinearLayout mLlServiceQJ;

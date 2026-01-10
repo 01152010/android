@@ -1,4 +1,4 @@
-package com.upad.activity;
+package com.upad;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
