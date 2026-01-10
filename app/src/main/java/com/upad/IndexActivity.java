@@ -49,6 +49,8 @@ public class IndexActivity extends AppCompatActivity {
     private boolean stop;
     private boolean enableAecm;
 
+    private TextView textViewIP;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,9 @@ public class IndexActivity extends AppCompatActivity {
 
         voiceRecorder = new VoiceRecorder();
         voicePlayer = new VoicePlayer();
+
+        textViewIP = findViewById(R.id.ip);
+        textViewIP.setText(getEthernetIpAddress());
 
         playBtn = findViewById(R.id.playBtn);
         playBtn.setOnClickListener(v -> { if (hasRecAudioPermission()) startPlay(); });

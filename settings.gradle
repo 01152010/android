@@ -3,4 +3,4 @@ include ':app'
 rootProject.name = "android"
 include ':webrtc'
 include ':kws'
-include ':TelinkBleMeshLib'
+//include ':TelinkBleMeshLib'
