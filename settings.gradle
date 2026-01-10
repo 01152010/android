@@ -1,5 +1,6 @@
 include ':serialport'
 include ':app'
-rootProject.name = "xiot-upad"
+rootProject.name = "android"
 include ':webrtc'
 include ':kws'
+include ':TelinkBleMeshLib'
