@@ -25,7 +25,7 @@ public class VoiceRecorder {
         int channelConfig = AudioFormat.CHANNEL_IN_MONO;
         if (channels == 6) {
             // try to use 5.1 input mask (may require API/device support)
-            channelConfig = AudioFormat.CHANNEL_IN_5POINT1;
+            channelConfig = AudioFormat.CHANNEL_OUT_5POINT1;
         } else if (channels == 2) {
             channelConfig = AudioFormat.CHANNEL_IN_STEREO;
         }

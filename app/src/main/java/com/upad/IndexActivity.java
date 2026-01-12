@@ -1,6 +1,7 @@
 package com.upad;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -76,7 +77,7 @@ public class IndexActivity extends AppCompatActivity {
             stop();
         });
 
-        Switch switchAecm = findViewById(R.id.switch_aecm);
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch switchAecm = findViewById(R.id.switch_aecm);
         switchAecm.setOnCheckedChangeListener((buttonView, isChecked) -> enableAecm = isChecked);
 
         textViewSeekBarSampleRate = findViewById(R.id.text_view_seek_bar_sample_rate_label);
@@ -178,10 +179,8 @@ public class IndexActivity extends AppCompatActivity {
         play();
     }
 
-    @RequiresApi(23)
     private boolean hasRecAudioPermission() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) return true;
-        else if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
             requestPermissions(new String[] {Manifest.permission.RECORD_AUDIO}, 1);
             return false;
         }
@@ -234,7 +233,7 @@ public class IndexActivity extends AppCompatActivity {
         new Thread(() -> {
             while (!stop) {
                 // read interleaved 6-channel frame (from file or recorder)
-                short[][] channels = usingFile ? voiceFileReader.frameMulti() : voiceRecorder.frameMulti();
+                short[][] channels = voiceFileReader.frameMulti();// : voiceRecorder.frameMulti();
                 if (channels == null) { // EOF for file
                     stop = true;
                     break;
