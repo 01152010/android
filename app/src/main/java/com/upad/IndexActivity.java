@@ -39,7 +39,7 @@ import java.util.Enumeration;
 
 
 public class IndexActivity extends AppCompatActivity {
-    private int SAMPLE_RATE = 8000;
+    private int SAMPLE_RATE = 16000;
     private int FRAME_SIZE = 160;
 
     private Button playBtn;
@@ -75,11 +75,6 @@ public class IndexActivity extends AppCompatActivity {
 
         playBtn = findViewById(R.id.playBtn);
         playBtn.setOnClickListener(v -> { if (hasRecAudioPermission()) startPlay(); });
-
-        convertBtn = findViewById(R.id.convertBtn);
-        convertBtn.setOnClickListener(v -> {
-            new Thread(() -> convertWavAssetToPcm("6ch.wav", "6ch_converted.pcm")).start();
-        });
 
         stopBtn = findViewById(R.id.stopBtn);
         stopBtn.setOnClickListener(v -> {
@@ -184,42 +179,6 @@ public class IndexActivity extends AppCompatActivity {
         seekBarEchoLength.setProgress(20);
     }
 
-    private void convertWavAssetToPcm(String wavAssetName, String outFileName) {
-        try {
-            // 1) write to cache dir
-            InputStream is1 = getAssets().open(wavAssetName);
-            WavFileReader wfr1 = new WavFileReader(is1);
-            File outCache = new File(getCacheDir(), outFileName);
-            if (outCache.exists()) outCache.delete();
-            boolean okCache = wfr1.writePcmToFile(outCache);
-            try { is1.close(); } catch (Exception ignored){}
-
-            // 2) also write to external app files dir (accessible via USB/file manager)
-            File externalDir = getExternalFilesDir("converted_pcm");
-            File outExternal = null;
-            boolean okExternal = false;
-            if (externalDir != null) {
-                if (!externalDir.exists()) externalDir.mkdirs();
-                outExternal = new File(externalDir, outFileName);
-                // reopen asset stream because previous reader consumed it
-                InputStream is2 = getAssets().open(wavAssetName);
-                WavFileReader wfr2 = new WavFileReader(is2);
-                if (outExternal.exists()) outExternal.delete();
-                okExternal = wfr2.writePcmToFile(outExternal);
-                try { is2.close(); } catch (Exception ignored){}
-            }
-
-            final String msg = "Saved: cache=" + outCache.getAbsolutePath() + (outExternal != null ? (" ext=" + outExternal.getAbsolutePath()) : "");
-            final boolean success = okCache || okExternal;
-            runOnUiThread(() -> {
-                Toast.makeText(IndexActivity.this, success ? msg : "Conversion failed", Toast.LENGTH_LONG).show();
-            });
-        } catch (Exception e) {
-            Log.e("IndexActivity", "convertWavAssetToPcm error", e);
-            runOnUiThread(() -> Toast.makeText(IndexActivity.this, "Conversion error: " + e.getMessage(), Toast.LENGTH_LONG).show());
-        }
-    }
-
     private void startPlay() {
         playBtn.setVisibility(View.GONE);
         stopBtn.setVisibility(View.VISIBLE);
@@ -264,26 +223,24 @@ public class IndexActivity extends AppCompatActivity {
         // try to open local PCM file from cache first, then assets; fallback to recorder
         boolean usingFile = false;
         try {
-            java.io.File cachePcm = new java.io.File(getCacheDir(), "input6ch_converted.pcm");
+            java.io.File cachePcm = new java.io.File(getCacheDir(), "6ch.pcm");
             if (cachePcm.exists()) {
                 java.io.FileInputStream fis = new java.io.FileInputStream(cachePcm);
                 voiceFileReader = new VoiceFileReader(fis);
                 // assume 6 channels for converted file
                 voiceFileReader.start(SAMPLE_RATE, FRAME_SIZE, 6);
-                usingFile = true;
             } else {
                 try {
-                    voiceFileReader = new VoiceFileReader(getAssets().open("input6ch.pcm"));
+                    voiceFileReader = new VoiceFileReader(getAssets().open("6ch.pcm"));
                     voiceFileReader.start(SAMPLE_RATE, FRAME_SIZE, 6);
-                    usingFile = true;
                 } catch (Exception ignored) {}
             }
         } catch (Exception ignored) {}
 
-        if (!usingFile) {
-            // start recorder in 6-channel mode: 4 mic channels + 2 playback (render) channels
-            voiceRecorder.start(SAMPLE_RATE, FRAME_SIZE, 6);
-        }
+//        if (!usingFile) {
+//            // start recorder in 6-channel mode: 4 mic channels + 2 playback (render) channels
+//            voiceRecorder.start(SAMPLE_RATE, FRAME_SIZE, 6);
+//        }
         voicePlayer.start(SAMPLE_RATE);
         // initialize echo synchronizer: maxDelayMs=200ms, history=1000ms
         echoSync = new EchoSynchronizer(SAMPLE_RATE, FRAME_SIZE, 200, 1000);
@@ -351,7 +308,6 @@ public class IndexActivity extends AppCompatActivity {
 
     private void stop() {
         stop = true;
-        if (voiceRecorder != null) voiceRecorder.release();
         if (voiceFileReader != null) {
             voiceFileReader.close();
             voiceFileReader = null;
