@@ -78,7 +78,7 @@ public class IndexActivity extends AppCompatActivity {
 
         convertBtn = findViewById(R.id.convertBtn);
         convertBtn.setOnClickListener(v -> {
-            new Thread(() -> convertWavAssetToPcm("input6ch.wav", "input6ch_converted.pcm")).start();
+            new Thread(() -> convertWavAssetToPcm("6ch.wav", "6ch_converted.pcm")).start();
         });
 
         stopBtn = findViewById(R.id.stopBtn);
