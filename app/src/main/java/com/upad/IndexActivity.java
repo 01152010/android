@@ -22,6 +22,8 @@ import androidx.core.app.ActivityCompat;
 import com.k2fsa.sherpa.ncnn.SherpaNcnn;
 import com.upad.voice.VoicePlayer;
 import com.upad.voice.VoiceRecorder;
+import com.upad.voice.VoiceFileReader;
+import com.upad.voice.EchoSynchronizer;
 import com.webrtc.AEC;
 
 import java.net.Inet4Address;
@@ -43,9 +45,11 @@ public class IndexActivity extends AppCompatActivity {
     private TextView textViewSeekBarAggressiveMode;
     private SeekBar seekBarEchoLength;
     private TextView textViewSeekBarEchoLength;
-    private AEC aec = new AEC();
+    private AEC[] aecs = null; // one AEC instance per mic channel when enabled
     private VoiceRecorder voiceRecorder;
+    private VoiceFileReader voiceFileReader;
     private VoicePlayer voicePlayer;
+    private EchoSynchronizer echoSync;
     private boolean stop;
     private boolean enableAecm;
 
@@ -191,8 +195,16 @@ public class IndexActivity extends AppCompatActivity {
     }
 
     private void play() {
-        if (enableAecm) aec.setSampFreq(seekBarSampleRate.getProgress() == 0 ? AEC.SamplingFrequency.FS_8000Hz : AEC.SamplingFrequency.FS_16000Hz);
-        if (enableAecm) aec.setAecmMode(getAggressiveMode());
+        // If AEC is enabled, create one AEC instance per mic channel (4 mics)
+        if (enableAecm) {
+            aecs = new AEC[4];
+            for (int i = 0; i < 4; i++) {
+                aecs[i] = new AEC();
+                aecs[i].setSampFreq(seekBarSampleRate.getProgress() == 0 ? AEC.SamplingFrequency.FS_8000Hz : AEC.SamplingFrequency.FS_16000Hz);
+                aecs[i].setAecmMode(getAggressiveMode());
+            }
+        }
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -203,16 +215,62 @@ public class IndexActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        voiceRecorder.start(SAMPLE_RATE, FRAME_SIZE);
+        // try to open local PCM file from assets named "input6ch.pcm" (interleaved 6ch int16 little-endian)
+        boolean usingFile = false;
+        try {
+            voiceFileReader = new VoiceFileReader(getAssets().open("input6ch.pcm"));
+            voiceFileReader.start(SAMPLE_RATE, FRAME_SIZE, 6);
+            usingFile = true;
+        } catch (Exception ignored) {}
+
+        if (!usingFile) {
+            // start recorder in 6-channel mode: 4 mic channels + 2 playback (render) channels
+            voiceRecorder.start(SAMPLE_RATE, FRAME_SIZE, 6);
+        }
         voicePlayer.start(SAMPLE_RATE);
+        // initialize echo synchronizer: maxDelayMs=200ms, history=1000ms
+        echoSync = new EchoSynchronizer(SAMPLE_RATE, FRAME_SIZE, 200, 1000);
         stop = false;
         new Thread(() -> {
             while (!stop) {
-                short[] frame = voiceRecorder.frame();
-                if (enableAecm) aec.farendBuffer(frame, FRAME_SIZE);
-                short[] resultFrame = new short[FRAME_SIZE];
-                if (enableAecm) resultFrame = aec.echoCancellation(frame, null, FRAME_SIZE, seekBarEchoLength.getProgress());
-                voicePlayer.write(enableAecm ? resultFrame : frame);
+                // read interleaved 6-channel frame (from file or recorder)
+                short[][] channels = usingFile ? voiceFileReader.frameMulti() : voiceRecorder.frameMulti();
+                if (channels == null) { // EOF for file
+                    stop = true;
+                    break;
+                }
+                // layout assumption: [mic0, mic1, mic2, mic3, play0, play1]
+                short[] farend = new short[FRAME_SIZE];
+                for (int i = 0; i < FRAME_SIZE; i++) {
+                    int s0 = channels.length > 4 ? channels[4][i] : 0;
+                    int s1 = channels.length > 5 ? channels[5][i] : 0;
+                    farend[i] = (short) ((s0 + s1) / ( (s0 != 0 && s1 != 0) ? 2 : 1));
+                }
+
+                if (echoSync != null) echoSync.bufferFarend(farend);
+
+                short[][] processed = new short[4][];
+                for (int m = 0; m < 4; m++) {
+                    short[] mic = channels.length > m ? channels[m] : new short[FRAME_SIZE];
+                    if (enableAecm && aecs != null && aecs[m] != null) {
+                        aecs[m].farendBuffer(farend, FRAME_SIZE);
+                        int delayMs = 0;
+                        if (echoSync != null) delayMs = echoSync.estimateDelayMs(mic);
+                        short[] out = aecs[m].echoCancellation(mic, FRAME_SIZE, delayMs);
+                        processed[m] = out != null ? out : mic;
+                    } else {
+                        processed[m] = mic;
+                    }
+                }
+
+                // mix down processed mic channels to mono for playback
+                short[] mix = new short[FRAME_SIZE];
+                for (int i = 0; i < FRAME_SIZE; i++) {
+                    int sum = 0;
+                    for (int m = 0; m < 4; m++) sum += processed[m][i];
+                    mix[i] = (short) (sum / 4);
+                }
+                voicePlayer.write(mix);
             }
         }).start();
     }
@@ -236,7 +294,11 @@ public class IndexActivity extends AppCompatActivity {
 
     private void stop() {
         stop = true;
-        voiceRecorder.release();
+        if (voiceRecorder != null) voiceRecorder.release();
+        if (voiceFileReader != null) {
+            voiceFileReader.close();
+            voiceFileReader = null;
+        }
         voicePlayer.stopPlaying();
     }
 
@@ -244,7 +306,9 @@ public class IndexActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         stop();
-        aec.close(); // completely destroys aecm instance, to continue work you need to create a new instance
+        if (aecs != null) {
+            for (int i = 0; i < aecs.length; i++) if (aecs[i] != null) aecs[i].close();
+        }
     }
 
     public static String getEthernetIpAddress() {
